@@ -9,7 +9,7 @@
 <style>
     .clock {
         border-radius: 50%;
-        border: 50px double red;
+        border: 50px groove red;
         width: 400px;
         height: 400px;
         display: flex;
@@ -20,6 +20,7 @@
     }
 
     p {
+        display: flex;
         font-size: 40px;
         color: white;
         border: 1px solid red;
@@ -27,33 +28,26 @@
         border-radius: 20px;
     }
 
+    .qq {
+        margin: 0px 7px;
+    }
+
     @media screen and (max-width: 526px) {
         .clock {
             border-radius: 50%;
-            border: 30px double red;
+            border: 30px groove red;
             width: 200px;
             height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            background-color: black;
         }
 
         p {
             font-size: 20px;
-            color: white;
-            border: 1px solid red;
-            padding: 10px;
-            border-radius: 20px;
         }
 
-    }
+        .qq {
+            margin: 0px 4px;
+        }
 
-    #HN,
-    #MN,
-    #SN {
-        margin-right: -5px;
     }
 </style>
 
@@ -62,11 +56,11 @@
 
 
 
-    <div class="clock">
+    <div class="clock" >
         <p> <span id="date"></span>
-            <span>/</span>
+            <span class="qq">/</span>
             <span id="month"></span>
-            <span>/</span>
+            <span class="qq">/</span>
             <span id="year"></span>
         </p>
         <br>
@@ -74,10 +68,10 @@
 
             <span id="HN">0</span>
             <span id="hours"></span>
-            <span>:</span>
+            <span class="qq">:</span>
             <span id="MN">0</span>
             <span id="minutes"></span>
-            <span>:</span>
+            <span class="qq">:</span>
             <span id="SN">0</span>
             <span id="seconds"></span>
         </p>
@@ -87,38 +81,43 @@
 
     <script>
 
-       
+
         function timeupdate() {
             let a = new Date();
-            let h = a.getHours();
-            let m = a.getMinutes();
-            let s = a.getSeconds();
-            let d = a.getDate();
-            let y = a.getFullYear();
-            let month = a.getMonth();
-            document.getElementById("hours").innerHTML = h;
-            document.getElementById("minutes").innerHTML = m;
-            document.getElementById("seconds").innerHTML = s;
-            document.getElementById("date").innerHTML = d;
-            document.getElementById("month").innerHTML = month;
-            document.getElementById("year").innerHTML = y;
+            document.getElementById("hours").innerHTML = a.getHours();
+            document.getElementById("minutes").innerHTML = a.getMinutes();
+            document.getElementById("seconds").innerHTML = a.getSeconds();
+            document.getElementById("date").innerHTML = a.getDate();
+            document.getElementById("month").innerHTML = a.getMonth();
+            document.getElementById("year").innerHTML = a.getFullYear();
             let SN = document.getElementById("SN");
             let HN = document.getElementById("HN");
             let MN = document.getElementById("MN");
-            if (s > 9) {
+            if (a.getSeconds() > 9) {
                 SN.style.display = "none";
+            } else {
+                SN.style.display = "block";
+
             }
-            if (h > 9) {
+            if (a.getHours() > 9) {
                 HN.style.display = "none";
             }
-            if (m > 9) {
+            else {
+                HN.style.display = "block";
+
+            }
+            if (a.getMinutes() > 9) {
                 MN.style.display = "none";
+            }
+            else {
+                MN.style.display = "block";
+
             }
             console.log(s)
         };
 
 
-        setInterval(timeupdate,500);
+        setInterval(timeupdate, 500);
     </script>
 </body>
 
