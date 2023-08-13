@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .clock {
+        border-radius: 50%;
+        border: 50px double red;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: black;
+    }
+    
+    p{
+        font-size: 40px;
+        color: white;
+        border: 1px solid red;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    
+</style>
+
+
+<body style="display: flex; justify-content: center; align-items: center;">
+    
+
+
+    <div class="clock">
+        <p> <span id="date"></span>
+            <span>/</span>
+            <span id="month"></span>
+            <span>/</span>
+            <span id="year"></span>
+        </p> 
+        <br>   
+        <p>
+            
+            <span id="HN">0</span>
+            <span id="hours"></span>
+            <span>:</span>
+            <span id="MN">0</span>
+            <span id="minutes"></span>
+            <span>:</span>
+            <span id="SN">0</span>
+            <span id="seconds"></span>
+        </p>
+    </div>
+
+
+
+    <script>
+        function timeupdate() {
+            let a = new Date();
+            let h = a.getHours();
+            let m = a.getMinutes();
+            let s = a.getSeconds();
+            let d = a.getDate();
+            let y = a.getFullYear();
+            let month = a.getMonth();
+            document.getElementById("hours").innerHTML = h;
+            document.getElementById("minutes").innerHTML = m;
+            document.getElementById("seconds").innerHTML = s;
+            document.getElementById("date").innerHTML = d;
+            document.getElementById("month").innerHTML = month;
+            document.getElementById("year").innerHTML = y;
+            let SN = document.getElementById("SN");
+            let HN = document.getElementById("HN");
+            let MN = document.getElementById("MN");
+            if(s > 9){
+                SN.style.display = "none";
+            }
+            if(h > 9){
+                HN.style.display = "none";
+            }
+            if(m > 9){
+                MN.style.display = "none";
+            }
+            timeupdate();
+        };
+
+        setInterval(timeupdate, 1000);
+    </script>
+</body>
+
+</html>
